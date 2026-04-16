@@ -291,3 +291,155 @@ Model analog value 1 = 3 character input & output. Example *255CI001O002<br>
 ✓ The MAX-72 can support a combination of up to (18) I/O cards<br>
 ✓ The MAX-144 can support a combination of up to (36) I/O cards<br>
 ✓ The MAX-216 can support a combination of up to (54) I/O cards<br>
+<!-- START Minimum Essentials Framework Versions -->
+### Minimum Essentials Framework Versions
+
+- 1.9.0
+<!-- END Minimum Essentials Framework Versions -->
+<!-- START Config Example -->
+### Config Example
+
+```json
+{
+    "key": "GeneratedKey",
+    "uid": 1,
+    "name": "GeneratedName",
+    "type": "PureLink",
+    "group": "Group",
+    "properties": {
+        "control": "SampleValue",
+        "pollTimeMs": 0,
+        "pollString": "SampleString",
+        "pollvideo": true,
+        "pollaudio": true,
+        "warningTimeoutMs": 0,
+        "errorTimeoutMs": 0,
+        "deviceId": "SampleString",
+        "model": "SampleValue",
+        "inputs": {
+            "SampleValue": {
+                "Name": "SampleString",
+                "VideoName": "SampleString",
+                "AudioName": "SampleString"
+            }
+        },
+        "outputs": {
+            "SampleValue": {
+                "Name": "SampleString",
+                "VideoName": "SampleString",
+                "AudioName": "SampleString"
+            }
+        }
+    }
+}
+```
+<!-- END Config Example -->
+<!-- START Supported Types -->
+### Supported Types
+
+- PureLink
+- MediaAxis
+<!-- END Supported Types -->
+<!-- START Join Maps -->
+### Join Maps
+
+#### Digitals
+
+| Join | Type (RW) | Description |
+| --- | --- | --- |
+| 1 | R | Is Online |
+| 1 | R | Requests video route |
+| 2 | R | Requests audio route |
+| 3 | R | Enable Audio Breakaway |
+| 12 | R | Disconnects the socket connection |
+| 11 | R | Connects the socket connection |
+| 6 | R | Poll |
+| 7 | R | Poll Video |
+| 8 | R | Poll Audio |
+| 15 | R | Clear Video Routes |
+| 16 | R | Clear Audio Routes |
+| 101 | R | Input Video Sync |
+
+#### Analogs
+
+| Join | Type (RW) | Description |
+| --- | --- | --- |
+| 1 | R | Socket Status |
+| 5 | R | Model |
+| 101 | R | DM Chassis Output Video Set / Get |
+| 301 | R | DM Chassis Output Audio Set / Get |
+
+#### Serials
+
+| Join | Type (RW) | Description |
+| --- | --- | --- |
+| 101 | R | Switcher Input Name |
+| 301 | R | Switcher Output Name |
+| 501 | R | Video Input Name |
+| 701 | R | Audio Input Name |
+| 901 | R | Video Output Name |
+| 1001 | R | Audio Output Name |
+| 2001 | R | DM Chassis Video Output Currently Routed Video Input Name |
+| 2201 | R | DM Chassis Audio Output Currently Routed Video Input Name |
+<!-- END Join Maps -->
+<!-- START Interfaces Implemented -->
+### Interfaces Implemented
+
+- IOnline
+- ICommunicationMonitor
+- IKeyName
+- IQueueMessage
+<!-- END Interfaces Implemented -->
+<!-- START Base Classes -->
+### Base Classes
+
+- EssentialsBridgeableDevice
+- JoinMapBaseAdvanced
+- PureLinkIo
+<!-- END Base Classes -->
+<!-- START Public Methods -->
+### Public Methods
+
+- public void Connect()
+- public void Disconnect()
+- public void SendText(string text)
+- public void Poll()
+- public void SetPollVideo()
+- public void SetPollAudio()
+- public void SetClearVideoRoutes()
+- public void SetClearAudioRoutes()
+- public void ExecuteSwitch(uint input, uint output, eRoutingSignalType signalType)
+- public void ProcessResponse(string response)
+- public void EnqueueAudioOutputForRoute(PureLinkOutput output)
+- public void EnqueueVideoOutputForRoute(PureLinkOutput output)
+- public void Dispatch()
+- public string GetCurrentAudioRoutePoll()
+- public string GetCurrentVideoRoutePoll()
+- public string GetRequestedAudioCommand()
+- public string GetRequestedAudioVideoRouteCommand()
+- public string GetRequestedVideoCommand()
+- public void RequestAudioRoute(int input)
+- public void RequestVideoRoute(int input)
+- public void UpdateCurrentAudioInput(int input)
+- public void UpdateCurrentVideoInput(int input)
+<!-- END Public Methods -->
+<!-- START Bool Feedbacks -->
+### Bool Feedbacks
+
+- ConnectFeedback
+- OnlineFeedback
+- EnableAudioBreakawayFeedback
+<!-- END Bool Feedbacks -->
+<!-- START Int Feedbacks -->
+### Int Feedbacks
+
+- StatusFeedback
+- CurrentlyRoutedAudioValue
+- CurrentlyRoutedVideoValue
+<!-- END Int Feedbacks -->
+<!-- START String Feedbacks -->
+### String Feedbacks
+
+- CurrentlyRouteAudioName
+- CurrentlyRouteVideoName
+<!-- END String Feedbacks -->
